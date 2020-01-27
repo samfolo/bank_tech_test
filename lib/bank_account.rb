@@ -12,7 +12,7 @@ class BankAccount
     "You have deposited #{'%.2f' % amount} coins"
   end
 
-  def withdraw amount
+  def withdraw amount, date = nil
     @balance -= amount
     "You have withdrawn #{'%.2f' % amount} coins"
   end
