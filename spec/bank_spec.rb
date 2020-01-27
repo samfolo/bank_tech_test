@@ -18,4 +18,8 @@ RSpec.describe Bank do
       expect(Bank.access_account_for('Elodie', 1246)).to eq 'Access denied'
     end
   end
+
+  it 'raises an error if an account does not exist' do
+    expect { Bank.access_account_for('Jim', 9999) }.to raise_error Bank::NON_EXISTENT_ACCOUNT
+  end
 end
