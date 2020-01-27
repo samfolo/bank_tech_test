@@ -2,6 +2,12 @@
 
 source "https://rubygems.org"
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
-# gem "rails"
+group :test, :development do
+  gem 'capybara'
+  gem 'rspec'
+  gem 'rubocop', '0.71.0'
+  gem 'simplecov', require: false
+  gem 'simplecov-console', require: false
+end

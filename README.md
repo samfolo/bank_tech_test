@@ -36,6 +36,7 @@ ruby
 RSpec
 Capybara
 Rubocop
+Simplecov
 ```
 
 ## How To Run The Program
