@@ -1,7 +1,7 @@
 require 'bank_account'
 
 RSpec.describe BankAccount do
-  let(:subject) { described_class.new(authentication) }
+  let(:subject) { described_class.new('Sam', authentication) }
   let(:authentication) { double :authentication, verify: true }
   let(:false_authentication) { double :authentication, verify: false }
 
@@ -9,15 +9,17 @@ RSpec.describe BankAccount do
     subject.enter_pin 1234
   end
 
+  it 'has an owner' do
+    expect(subject.owner).to eq 'Sam'
+  end
+
   it 'requires a PIN number before it can be accessed' do
-    locked_account = described_class.new(false_authentication)
+    locked_account = described_class.new('Sam', false_authentication)
     expect { locked_account.deposit(30) }.to raise_error BankAccount::UNAUTHORISED
   end
 
   it 'can be unlocked with a PIN number' do
-    new_account = described_class.new(authentication)
-    expect(new_account.enter_pin 1234).to eq 'Account unlocked'
-    expect(new_account.deposit 30).to eq 'You have deposited 30.00 coins'
+    expect(subject.enter_pin 1234).to eq 'Account unlocked'
   end
 
   it 'allows an owner to deposit coins' do
