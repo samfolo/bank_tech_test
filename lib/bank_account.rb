@@ -9,10 +9,15 @@ class BankAccount
   INSUFFICIENT_DEPOSIT = 'Insufficient deposit.'
   INSUFFICIENT_WITHDRAWAL = 'Insufficient withdrawal.'
 
-  def initialize authentication = Authentication.new, balance = 0, transactions = Transactions.new, locked = true
+  def initialize 
+    authentication = Authentication.new, 
+    balance = 0, 
+    transactions = Transactions.new, 
+    locked = true
+
+    @authentication = authentication
     @balance = balance
     @transactions = transactions
-    @authentication = authentication
     @locked = locked
   end
 
