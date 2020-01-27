@@ -39,6 +39,10 @@ As a customer
 So that I can keep track of my spending habits
 I would like to be able to print out my bank balance
 
+As a customer
+So that only I can access my money
+I would like to be able to set a PIN number
+
 ––––––––––
 
 As a bank CEO

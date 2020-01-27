@@ -1,5 +1,11 @@
 RSpec.describe 'a working bank account', type: :feature do
-  let(:test_account) { BankAccount.new }
+  let(:test_auth) { Authentication.new(1234) }
+  let(:test_account) { BankAccount.new(test_auth) }
+
+  before(:each) do
+    test_account.enter_pin 1234
+  end
+  
   scenario 'an account owner makes a deposit of 500 coins' do
     expect(test_account.deposit(500)).to eq 'You have deposited 500.00 coins'
   end
