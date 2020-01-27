@@ -1,6 +1,5 @@
 RSpec.describe 'a working bank account', type: :feature do
   let(:test_account) { BankAccount.new }
-
   scenario 'an account owner makes a deposit of 500 coins' do
     expect(test_account.deposit(500)).to eq 'You have deposited 500.00 coins'
   end
@@ -19,6 +18,14 @@ RSpec.describe 'a working bank account', type: :feature do
   scenario 'an account owner makes a deposit of 40 on 10/01/2020 and prints their statement' do
     test_account.deposit(40, '10/01/2020')
     expected_statement = "date || credit || debit || balance\n10/01/2020 || 40.00 || || 40.00"
+
+    expect(test_account.print_statement).to eq expected_statement
+  end
+
+  scenario 'an account owner makes a deposit of 40 on 10/01/2020, then 500 on 11/01/2020 and prints their statement' do
+    test_account.deposit(40, '10/01/2020')
+    test_account.deposit(500, '11/01/2020')
+    expected_statement = "date || credit || debit || balance\n11/01/2020 || 500.00 || || 540.00\n10/01/2020 || 40.00 || || 40.00"
 
     expect(test_account.print_statement).to eq expected_statement
   end
