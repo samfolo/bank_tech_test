@@ -9,22 +9,22 @@ class BankAccount
   def deposit amount, date = nil
     @balance += amount
     @deposits << Deposit.new(amount, date)
-    "You have deposited #{amount} coins"
+    "You have deposited #{'%.2f' % amount} coins"
   end
 
   def withdraw amount
     @balance -= amount
-    "You have withdrawn #{amount} coins"
+    "You have withdrawn #{'%.2f' % amount} coins"
   end
 
   def view_balance
-    "You have #{@balance} coins"
+    "You have #{'%.2f' % @balance} coins"
   end
 
   def print_statement
     "date || credit || debit || balance\n" +
     @deposits.map.with_index { |deposit, i| 
-      "#{deposit.date_created} || #{deposit.view_amount} || || #{'%.2f' % balance_at(i)}"
+      "#{deposit.date_created} || #{deposit.view_amount} || || #{balance_at(i)}"
     }.join("\n")
   end
 
@@ -33,6 +33,6 @@ class BankAccount
   def balance_at index
     balance = 0
     @deposits[0..index].to_a.each { |deposit| balance += deposit.view_amount.to_i }
-    balance
+    '%.2f' % balance
   end
 end
