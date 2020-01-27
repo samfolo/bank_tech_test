@@ -18,6 +18,22 @@ date || credit || debit || balance
 10/01/2012 || 1000.00 || || 1000.00
 ```
 
+```
+As a customer
+So that I can manage my money
+I would like access to a bank account
+
+As a customer
+So that I can keep all my earnings in one place
+I would like to be able to make a deposit
+
+As a customer
+So that I can spend my earnings as and when I need to
+I would like to be able to make withdrawals
+
+
+```
+
 ## Domain Model
 
 ## Class Diagrams
