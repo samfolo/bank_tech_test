@@ -25,7 +25,7 @@ class BankAccount
     "date || credit || debit || balance\n" +
     @deposits.map.with_index { |deposit, i| 
       "#{deposit.date_created} || #{deposit.view_amount} || || #{balance_at(i)}"
-    }.join("\n")
+    }.reverse.join("\n")
   end
 
   private
