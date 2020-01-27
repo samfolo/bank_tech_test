@@ -20,8 +20,12 @@ date || credit || debit || balance
 
 ```
 As a customer
+So that I have somewhere to put my money
+I would like to sign up for a bank account
+
+As a customer
 So that I can manage my money
-I would like access to a bank account
+I would like access to my bank account
 
 As a customer
 So that I can keep all my earnings in one place
