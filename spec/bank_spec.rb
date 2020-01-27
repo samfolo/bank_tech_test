@@ -22,4 +22,10 @@ RSpec.describe Bank do
   it 'raises an error if an account does not exist' do
     expect { Bank.access_account_for('Jim', 9999) }.to raise_error Bank::NON_EXISTENT_ACCOUNT
   end
+
+  it 'keeps track of the logged in account' do
+    Bank.open_account_for 'Rianne', 5678
+    tracked_account = Bank.active_account
+    expect(tracked_account.owner).to eq 'Rianne'
+  end
 end

@@ -10,7 +10,6 @@ class Bank
     authentication = Authentication.new(pin_number)
     @account = BankAccount.new(name, authentication)
     @bank_accounts << @account
-
     'Account opened for Sam'
   end
 
@@ -20,5 +19,9 @@ class Bank
 
     return 'Access denied' if target_account.enter_pin(pin_number) != 'Account unlocked'
     'Account unlocked'
+  end
+
+  def self.active_account
+    @account
   end
 end
