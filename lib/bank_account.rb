@@ -4,6 +4,8 @@ require_relative 'transactions'
 
 class BankAccount
   INSUFFICIENT_FUNDS = 'This account has inufficient funds.'
+  INSUFFICIENT_DEPOSIT = 'Insufficient deposit.'
+  INSUFFICIENT_WITHDRAWAL = 'Insufficient withdrawal.'
 
   def initialize balance = 0, transactions = Transactions.new
     @balance = balance
@@ -11,6 +13,8 @@ class BankAccount
   end
 
   def deposit amount, balance_at_deposit = (@balance + amount), date = nil
+    raise INSUFFICIENT_DEPOSIT if amount < 5
+
     @balance += amount
     @transactions.log Deposit.new(amount, balance_at_deposit, date)
     "You have deposited #{'%.2f' % amount} coins"
@@ -18,6 +22,7 @@ class BankAccount
 
   def withdraw amount, balance_at_withdrawal = (@balance - amount), date = nil
     raise INSUFFICIENT_FUNDS if (@balance - amount).negative?
+    raise INSUFFICIENT_WITHDRAWAL if amount < 5
 
     @balance -= amount
     @transactions.log Withdrawal.new(amount, balance_at_withdrawal, date)

@@ -44,6 +44,14 @@ I would like to be able to print out my bank balance
 As a bank CEO
 So that customers are unable to withdraw an infinite amount
 I would like them to be alerted when they attempt to withdraw more money than they have
+
+As a bank CEO
+So that customers cannot make redundant deposits
+I would like all deposits to be a minimum of 5 coins
+
+As a bank CEO
+So that customers cannot make redundant withdrawals
+I would like all withdrawals to be a minimum of 5 coins
 ```
 
 ## Domain Model

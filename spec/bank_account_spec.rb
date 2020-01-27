@@ -23,4 +23,12 @@ RSpec.describe BankAccount do
   it 'throws an error when owner attempts to withdraw more than is available' do
     expect { subject.withdraw(10) }.to raise_error BankAccount::INSUFFICIENT_FUNDS
   end
+
+  it 'does not allow an account owner to deposit less than 5 coins' do
+    expect { subject.deposit(4.5) }.to raise_error BankAccount::INSUFFICIENT_DEPOSIT
+  end
+
+  it 'does not allow an account owner to withdraw less than 5 coins' do
+    expect { subject.deposit(4.5) }.to raise_error BankAccount::INSUFFICIENT_DEPOSIT
+  end
 end
