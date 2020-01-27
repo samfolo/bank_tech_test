@@ -10,4 +10,8 @@ RSpec.describe Deposit do
   it 'takes a date' do
     expect(test_deposit.date_created).to eq '10/01/2020'
   end
+
+  it 'prints its log data' do
+    expect(test_deposit.log_line).to eq "10/01/2020 || 500.00 || ||"
+  end
 end

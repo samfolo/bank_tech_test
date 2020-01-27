@@ -11,4 +11,8 @@ class Withdrawal
   def date_created
     @date
   end
+
+  def log_line
+    "#{date_created} || || #{view_amount} ||"
+  end
 end
