@@ -10,13 +10,13 @@ class BankAccount
 
   def deposit amount, date = nil, balance_at_deposit = (@balance + amount)
     @balance += amount
-    @transactions.log_deposit Deposit.new(amount, date, balance_at_deposit)
+    @transactions.log Deposit.new(amount, date, balance_at_deposit)
     "You have deposited #{'%.2f' % amount} coins"
   end
 
   def withdraw amount, date = nil, balance_at_withdrawal = (@balance - amount)
     @balance -= amount
-    @transactions.log_deposit Withdrawal.new(amount, date, balance_at_withdrawal)
+    @transactions.log Withdrawal.new(amount, date, balance_at_withdrawal)
     "You have withdrawn #{'%.2f' % amount} coins"
   end
 
@@ -26,7 +26,7 @@ class BankAccount
 
   def print_statement
     "date || credit || debit || balance\n" +
-    @transactions.get_log_data.reverse.join("\n")
+    @transactions.log_data.reverse.join("\n")
   end
 
   private

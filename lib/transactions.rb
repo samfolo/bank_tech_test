@@ -2,11 +2,12 @@ class Transactions
   def initialize transactions = []
     @transactions = transactions
   end
-  def log_deposit deposit
-    @transactions << deposit
+
+  def log transaction
+    @transactions << transaction
   end
 
-  def get_log_data
+  def log_data
     @transactions.map(&:log_line)
   end
 end
