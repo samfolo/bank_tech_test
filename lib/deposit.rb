@@ -1,5 +1,5 @@
 class Deposit
-  def initialize amount, date, balance_at_deposit = 0
+  def initialize amount, balance_at_deposit = 0, date
     @amount = amount
     @date = date
     @balance_at_deposit = balance_at_deposit

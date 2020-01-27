@@ -1,5 +1,7 @@
 class Withdrawal
-  def initialize amount, date, balance_at_withdrawal
+  CURRENT_DATE = Time.now.utc.strftime('%d/%m/%Y')
+  
+  def initialize amount, balance_at_withdrawal, date = CURRENT_DATE
     @amount = amount
     @date = date
     @balance_at_withdrawal = balance_at_withdrawal

@@ -2,7 +2,7 @@ require 'deposit'
 
 RSpec.describe Deposit do
   let(:current_balance) { 510 }
-  let(:test_deposit) { Deposit.new(500, '10/01/2020', current_balance) }
+  let(:test_deposit) { Deposit.new(500, current_balance, '10/01/2020') }
 
   it 'takes an amount' do
     expect(test_deposit.view_amount).to eq '500.00'

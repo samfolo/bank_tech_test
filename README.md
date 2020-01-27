@@ -1,8 +1,6 @@
 # Bank Tech Test
 Bank – Technical Test: code quality; best practices; process.
 
-## User Stories
-
 ### Acceptance Criteria
 
 **Given** a client makes a deposit of 1000 on 10-01-2012  
@@ -17,6 +15,8 @@ date || credit || debit || balance
 13/01/2012 || 2000.00 || || 3000.00
 10/01/2012 || 1000.00 || || 1000.00
 ```
+
+## User Stories
 
 ```
 As a customer
