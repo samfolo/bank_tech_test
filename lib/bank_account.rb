@@ -23,6 +23,16 @@ class BankAccount
 
   def print_statement
     "date || credit || debit || balance\n" +
-    @deposits.map { |deposit| "#{deposit.date_created} || #{'%.2f' % deposit.view_amount} || || #{'%.2f' % @balance}" }.join("\n")
+    @deposits.map.with_index { |deposit, i| 
+      "#{deposit.date_created} || #{deposit.view_amount} || || #{'%.2f' % balance_at(i)}"
+    }.join("\n")
+  end
+
+  private
+
+  def balance_at index
+    balance = 0
+    @deposits[0..index].to_a.each { |deposit| balance += deposit.view_amount.to_i }
+    balance
   end
 end
