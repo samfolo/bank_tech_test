@@ -18,7 +18,6 @@ RSpec.describe Withdrawal do
   
   context 'when no date is given' do
     it 'uses the current date' do
-      current_date = Time.now.utc.strftime '%d/%m/%Y'
       no_date_withdrawal = Withdrawal.new(60, current_balance)
       expect(no_date_withdrawal.log_line).to eq "#{Withdrawal::CURRENT_DATE} || || 60.00 || 560.00"
     end

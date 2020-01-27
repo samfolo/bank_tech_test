@@ -3,6 +3,8 @@ require_relative 'withdrawal'
 require_relative 'transactions'
 
 class BankAccount
+  INSUFFICIENT_FUNDS = 'This account has inufficient funds.'
+
   def initialize balance = 0, transactions = Transactions.new
     @balance = balance
     @transactions = transactions
@@ -15,6 +17,8 @@ class BankAccount
   end
 
   def withdraw amount, balance_at_withdrawal = (@balance - amount), date = nil
+    raise INSUFFICIENT_FUNDS if (@balance - amount).negative?
+
     @balance -= amount
     @transactions.log Withdrawal.new(amount, balance_at_withdrawal, date)
     "You have withdrawn #{'%.2f' % amount} coins"

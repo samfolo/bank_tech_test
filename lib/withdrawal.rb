@@ -1,7 +1,7 @@
 require_relative 'transaction'
 
 class Withdrawal < Transaction
-  def initialize amount, logged_balance, date = CURRENT_DATE
+  def initialize amount, logged_balance = 0, date = CURRENT_DATE
     super(amount, logged_balance, date)
   end
 
