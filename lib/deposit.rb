@@ -1,21 +1,11 @@
-class Deposit
-  CURRENT_DATE = Time.now.utc.strftime('%d/%m/%Y')
+require_relative 'transaction'
 
-  def initialize amount, balance_at_deposit = 0, date = CURRENT_DATE
-    @amount = amount
-    @date = date
-    @balance_at_deposit = balance_at_deposit
-  end
-
-  def view_amount
-    '%.2f' % @amount
-  end
-
-  def date_created
-    @date
+class Deposit < Transaction
+  def initialize amount, logged_balance = 0, date = CURRENT_DATE
+    super(amount, logged_balance, date)
   end
 
   def log_line
-    "#{date_created} || #{view_amount} || || #{'%.2f' % @balance_at_deposit}"
+    "#{date_created} || #{view_amount} || || #{'%.2f' % @logged_balance}"
   end
 end
