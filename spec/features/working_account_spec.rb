@@ -1,6 +1,6 @@
 RSpec.describe 'a working bank account', type: :feature do
   let(:test_auth) { Authentication.new(1234) }
-  let(:test_account) { BankAccount.new(test_auth) }
+  let(:test_account) { BankAccount.new('Elodie', test_auth) }
 
   before(:each) do
     test_account.enter_pin 1234
