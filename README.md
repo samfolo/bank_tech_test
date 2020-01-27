@@ -31,7 +31,19 @@ As a customer
 So that I can spend my earnings as and when I need to
 I would like to be able to make withdrawals
 
+As a customer
+So that I can keep track of how much money I have
+I would like to view my current balance
 
+As a customer
+So that I can keep track of my spending habits
+I would like to be able to print out my bank balance
+
+––––––––––
+
+As a bank CEO
+So that customers are unable to withdraw an infinite amount
+I would like them to be alerted when they attempt to withdraw more money than they have
 ```
 
 ## Domain Model

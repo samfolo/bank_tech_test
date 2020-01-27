@@ -19,4 +19,11 @@ RSpec.describe BankAccount do
 
     expect(test_account.view_balance).to eq 'You have 10 coins'
   end
+
+  it 'allows an owner to see their current balance' do
+    test_account.deposit(60)
+    test_account.withdraw(50)
+
+    expect(test_account.view_balance).to eq 'You have 10 coins'
+  end
 end
