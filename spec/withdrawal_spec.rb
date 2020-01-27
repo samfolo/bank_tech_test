@@ -1,7 +1,8 @@
 require 'withdrawal'
 
 RSpec.describe Withdrawal do
-  let(:test_withdrawal) { Withdrawal.new(60, '10/03/2020') }
+  let(:current_balance) { 560 }
+  let(:test_withdrawal) { Withdrawal.new(60, '10/03/2020', current_balance) }
   
   it 'takes an amount' do
     expect(test_withdrawal.view_amount).to eq '60.00'
@@ -12,6 +13,6 @@ RSpec.describe Withdrawal do
   end
 
   it 'prints its log data' do
-    expect(test_withdrawal.log_line).to eq "10/03/2020 || || 60.00 ||"
+    expect(test_withdrawal.log_line).to eq "10/03/2020 || || 60.00 || 560.00"
   end
 end
