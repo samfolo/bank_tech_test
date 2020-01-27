@@ -1,5 +1,7 @@
 class Deposit
-  def initialize amount, balance_at_deposit = 0, date
+  CURRENT_DATE = Time.now.utc.strftime('%d/%m/%Y')
+
+  def initialize amount, balance_at_deposit = 0, date = CURRENT_DATE
     @amount = amount
     @date = date
     @balance_at_deposit = balance_at_deposit
