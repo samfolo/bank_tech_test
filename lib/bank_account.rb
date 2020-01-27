@@ -1,7 +1,6 @@
 require_relative 'deposit'
 require_relative 'withdrawal'
 require_relative 'transactions'
-require_relative 'authentication'
 
 class BankAccount
   UNAUTHORISED = 'Account locked, please enter PIN number.'
@@ -13,7 +12,7 @@ class BankAccount
   
   def initialize(
     owner = nil,
-    authentication = Authentication.new, 
+    authentication = nil, 
     balance = 0, 
     transactions = Transactions.new, 
     locked = true
