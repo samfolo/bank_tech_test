@@ -4,15 +4,15 @@ require_relative 'transactions'
 require_relative 'authentication'
 
 class BankAccount
-  attr_reader :owner
-
   UNAUTHORISED = 'Account locked, please enter PIN number.'
   INSUFFICIENT_FUNDS = 'This account has inufficient funds.'
   INSUFFICIENT_DEPOSIT = 'Insufficient deposit.'
   INSUFFICIENT_WITHDRAWAL = 'Insufficient withdrawal.'
 
+  attr_reader :owner
+  
   def initialize(
-    owner,
+    owner = nil,
     authentication = Authentication.new, 
     balance = 0, 
     transactions = Transactions.new, 
@@ -59,7 +59,11 @@ class BankAccount
   end
 
   def enter_pin pin
-    @locked = false if @authentication.verify pin
-    'Account unlocked'
+    if @authentication.verify pin
+      @locked = false
+      'Account unlocked' 
+    else
+      'Access denied'
+    end
   end
 end
