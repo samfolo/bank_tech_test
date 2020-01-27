@@ -7,6 +7,6 @@ class Transactions
   end
 
   def get_log_data
-    @transactions.map(&:log_line).reverse
+    @transactions.map(&:log_line)
   end
 end

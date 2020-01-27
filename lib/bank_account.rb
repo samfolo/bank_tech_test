@@ -1,19 +1,22 @@
 require_relative 'deposit'
+require_relative 'withdrawal'
+require_relative 'transactions'
 
 class BankAccount
-  def initialize balance = 0
+  def initialize balance = 0, transactions = Transactions.new
     @balance = balance
-    @deposits = []
+    @transactions = transactions
   end
 
-  def deposit amount, date = nil
+  def deposit amount, date = nil, balance_at_deposit = (@balance + amount)
     @balance += amount
-    @deposits << Deposit.new(amount, date)
+    @transactions.log_deposit Deposit.new(amount, date, balance_at_deposit)
     "You have deposited #{'%.2f' % amount} coins"
   end
 
-  def withdraw amount, date = nil
+  def withdraw amount, date = nil, balance_at_withdrawal = (@balance - amount)
     @balance -= amount
+    @transactions.log_deposit Withdrawal.new(amount, date, balance_at_withdrawal)
     "You have withdrawn #{'%.2f' % amount} coins"
   end
 
@@ -23,16 +26,12 @@ class BankAccount
 
   def print_statement
     "date || credit || debit || balance\n" +
-    @deposits.map.with_index { |deposit, i| 
-      "#{deposit.date_created} || #{deposit.view_amount} || || #{balance_at(i)}"
-    }.reverse.join("\n")
+    @transactions.get_log_data.reverse.join("\n")
   end
 
   private
 
   def balance_at index
-    balance = 0
-    @deposits[0..index].to_a.each { |deposit| balance += deposit.view_amount.to_i }
-    '%.2f' % balance
+    
   end
 end
