@@ -123,7 +123,7 @@ Travis CI
 
 - Clone this repository
 - `cd` into the directory
-- run `bundle`
+- run `bundle` to install any missing dependencies
 - run `bundle exec rspec` to run the test suite
 - run `bundle exec rubocop` to run the code linter
 
