@@ -165,4 +165,5 @@ View your current balance:
 ## Future Improvements
 
 • I would love to be able to afford a user an overdraft, this may work well for account owners with more complicated financial requirements; if the bank aspires to improve the quality of their service, then this could be a valuable addition.<br/><br/>
+
 • I would also like to have a way to keep track of interest; both on their savings and on any overdraft amounts left outstanding. This will give account owners incentive to pay back their loans in a timely manner, as well as incentive to maintain their accounts by rewarding their loyalty.

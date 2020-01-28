@@ -26,22 +26,24 @@ class BankAccount
     @locked = locked
   end
 
-  def deposit amount, balance_at_deposit = (@balance + amount), date = Transaction::CURRENT_DATE
+  def deposit amount, date = Transaction::CURRENT_DATE
     raise UNAUTHORISED if @locked
     raise INSUFFICIENT_DEPOSIT if amount < 5
 
     @balance += amount
-    @transactions.log Deposit.new(amount, balance_at_deposit, date)
+    at_deposit ||= @balance
+    @transactions.log Deposit.new(amount, at_deposit, date)
     "You have deposited #{'%.2f' % amount} coins"
   end
 
-  def withdraw amount, balance_at_withdrawal = (@balance - amount), date = Transaction::CURRENT_DATE
+  def withdraw amount, date = Transaction::CURRENT_DATE
     raise UNAUTHORISED if @locked
     raise INSUFFICIENT_FUNDS if (@balance - amount).negative?
     raise INSUFFICIENT_WITHDRAWAL if amount < 5
 
     @balance -= amount
-    @transactions.log Withdrawal.new(amount, balance_at_withdrawal, date)
+    at_withdrawal ||= @balance
+    @transactions.log Withdrawal.new(amount, at_withdrawal, date)
     "You have withdrawn #{'%.2f' % amount} coins"
   end
 
