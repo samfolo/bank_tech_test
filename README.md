@@ -2,7 +2,7 @@
 
 # Bank Tech Test
 
-Customers of a bank wish to keep track of and access the money they have earned and saved, and the bank wishes to take steps towards making this easier, and therefore the owner has requested a program to allow their customers to keep track of and interact with their bank accounts.
+Customers of a bank wish to keep track of and access the money they have earned and saved and the bank wishes to take steps towards making this easier, therefore the owner has requested a program to allow their customers to keep track of and interact with their bank accounts.
 
 ### Acceptance Criteria
 
