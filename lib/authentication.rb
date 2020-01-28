@@ -1,5 +1,5 @@
 class Authentication
-  def initialize pin_number
+  def initialize pin_number = nil
     @pin_number = pin_number
   end
 

@@ -21,8 +21,12 @@ date || credit || debit || balance
 
 ```
 As a customer
+So that I have somewhere to put my money
+I would like to sign up for a bank account
+
+As a customer
 So that I can manage my money
-I would like access to a bank account
+I would like access to my bank account
 
 As a customer
 So that I can keep all my earnings in one place
@@ -39,6 +43,10 @@ I would like to view my current balance
 As a customer
 So that I can keep track of my spending habits
 I would like to be able to print out my bank balance
+
+As a customer
+So that only I can access my money
+I would like to be able to set a PIN number
 
 ––––––––––
 
@@ -157,4 +165,7 @@ View your current balance:
 ## Future Improvements
 
 • I would love to be able to afford a user an overdraft, this may work well for account owners with more complicated financial requirements; if the bank aspires to improve the quality of their service, then this could be a valuable addition.<br/><br/>
+
 • I would also like to have a way to keep track of interest; both on their savings and on any overdraft amounts left outstanding. This will give account owners incentive to pay back their loans in a timely manner, as well as incentive to maintain their accounts by rewarding their loyalty.
+
+• I would possible want to give account owners a way to trnsfer money between accounts they own, as well as send money to other customers.  This may require a seperate `Transfer` log-type in their statements, to sit alongside `Deposit` and `Withdrawal`.
