@@ -138,25 +138,14 @@ irb(main):001:0> require_relative './lib/bank.rb'
 
 ### Using the program
 
-<<<<<<< HEAD
 To initialise an account you will need to create one:
 ```
 irb(main):000:0> sams_account = BankAccount.new
-=======
-To initialise an account you will need to open one; simple call the method `open_account_for` on the `Bank` class:
-```
-irb(main):002:0> Bank.open_account_for 'Sam', 1255
-```
-Then to keep track of it, you can find and assign it to a variable:
-```
-irb(main):003:0> sams_account = Bank.account_for 'Sam', 1255
->>>>>>> db58df20da3175a3f505fcf1aae5f30ae4647de2
 ```
 
 You can do the following things with your account:
 ```
 Make a deposit:
-<<<<<<< HEAD
   irb(main):001:0> sams_account.deposit 500
 
 Make a withdrawal:
@@ -164,18 +153,6 @@ Make a withdrawal:
 
 Print your statement:
   irb(main):003:0> sams_account.print_statement
-=======
-  irb(main):004:0> sams_account.deposit 500
-
-Make a withdrawal:
-  irb(main):005:0> sams_account.withdraw 30
-
-Print your statement:
-  irb(main):006:0> sams_account.print_statement
-
-View your current balance:
-  irb(main):007:0> sams_account.view_balance
->>>>>>> db58df20da3175a3f505fcf1aae5f30ae4647de2
 ```
 
 ## Future Improvements
