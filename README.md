@@ -81,21 +81,22 @@ Once the nouns and verbs have been split, I wanted to divide the potential metho
 Keeping the classes as lean as possible – giving each a small piece of logic to deal with – allows for much easier maintenance and presents more opportunities for scaling should the owner require.
 
 
-| BankAccount                 | Deposit           | Withdrawal        | Transactions         | Authentication |
-| :-------------------------- | :---------------- | :---------------- | :-----------------   | :------------- |
-| `@balance`                  | `@amount`         | `@amount`         | `@transactions`      |                |
-| `@transactions`             | `@date`           | `@date`           |                      |                |
-|                             | `@logged_balance` | `@logged_balance` |                      |                |
-|                             |                   |                   |                      |                |
-| `#deposit`                  | `#view_amount`    | `#view_amount`    | `#log_data`          | `#verify`      |
-| `#withdraw`                 | `#date_created`   | `#date_created`   |                      |                |
-| `#view_balance`             | `#log_line`       | `#log_line`       |                      |                |
-| `#print_statement`          |                   |                   |                      |                |
-|                             |                   |                   |                      |                |
-| `::UNAUTHORISED`            | `::CURRENT_DATE`  | `::CURRENT_DATE`  |                      |                |
-| `::INSUFFICIENT_FUNDS`      |                   |                   |                      |                |
-| `::INVALID_DEPOSIT`         |                   |                   |                      |                |
-| `::INVALID_WITHDRAWAL`      |                   |                   |                      |                |
+| BankAccount                 | Deposit           | Withdrawal        | Transactions         |
+| :-------------------------- | :---------------- | :---------------- | :-----------------   |
+|                             |                   |                   |                      |
+| `@balance`                  | `@amount`         | `@amount`         | `@transactions`      |
+| `@transactions`             | `@date`           | `@date`           |                      |
+|                             | `@logged_balance` | `@logged_balance` |                      |
+|                             |                   |                   |                      |
+| `#deposit`                  | `#view_amount`    | `#view_amount`    | `#log_data`          |
+| `#withdraw`                 | `#date_created`   | `#date_created`   |                      |
+| `#view_balance`             | `#log_line`       | `#log_line`       |                      |
+| `#print_statement`          |                   |                   |                      |
+|                             |                   |                   |                      |
+| `::UNAUTHORISED`            | `::CURRENT_DATE`  | `::CURRENT_DATE`  |                      |
+| `::INSUFFICIENT_FUNDS`      |                   |                   |                      |
+| `::INVALID_DEPOSIT`         |                   |                   |                      |
+| `::INVALID_WITHDRAWAL`      |                   |                   |                      |
 
 After drawing this class Diagram, I realised both the `Deposit` and `Withdrawal` classes shared several and features.  Initially I made them subclasses of a single `Transaction` class, but eventually reverted back to using a single class as the two were virtually identical.
 
