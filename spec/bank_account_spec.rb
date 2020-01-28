@@ -1,53 +1,44 @@
 require 'bank_account'
 
 RSpec.describe BankAccount do
-  let(:subject) { described_class.new('Sam', authentication) }
-  let(:authentication) { double :authentication, verify: true }
-  let(:false_authentication) { double :authentication, verify: false }
+  let(:test_date) { '10/01/2020' }
+  let(:transaction_class) { double :transaction_class, new: true }
+  let(:transactions) { double :transactions, log: true }
+  let(:subject) { described_class.new transaction_class, transactions }
 
-  before(:each) do
-    subject.enter_pin 1234
+  it 'allows an owner to deposit 300 coins' do
+    # returns amount deposited
+    expect(subject.deposit(300, test_date)).to eq 300
   end
 
-  it 'has an owner' do
-    expect(subject.owner).to eq 'Sam'
+  it 'allows an owner to deposit 400.75 coins' do
+    expect(subject.deposit(400.75, test_date)).to eq 400.75
   end
 
-  it 'requires a PIN number before it can be accessed' do
-    locked_account = described_class.new('Sam', false_authentication)
-    expect { locked_account.deposit(30) }.to raise_error BankAccount::UNAUTHORISED
+  it 'allows an owner to withdraw 15.50 coins' do
+    subject.deposit(500, test_date)
+
+    # returns amount withdrawn (negative amount)
+    expect(subject.withdraw(50, test_date)).to eq 450
   end
 
-  it 'can be unlocked with a PIN number' do
-    expect(subject.enter_pin 1234).to eq 'Account unlocked'
-  end
+  it 'allows an owner to withdraw 475 coins' do
+    subject.deposit(500, test_date)
 
-  it 'allows an owner to deposit coins' do
-    expect(subject.deposit(300)).to eq 'You have deposited 300.00 coins'
-  end
-
-  it 'allows an owner to withdraw coins' do
-    subject.deposit(500)
-
-    expect(subject.withdraw(400)).to eq 'You have withdrawn 400.00 coins'
-  end
-
-  it 'allows an owner to see their current balance' do
-    subject.deposit(60)
-    subject.withdraw(50)
-
-    expect(subject.view_balance).to eq 'You have 10.00 coins'
+    expect(subject.withdraw(475, test_date)).to eq 25
   end
 
   it 'throws an error when owner attempts to withdraw more than is available' do
-    expect { subject.withdraw(10) }.to raise_error BankAccount::INSUFFICIENT_FUNDS
+    expect { subject.withdraw(10, test_date) }.to raise_error BankAccount::INSUFFICIENT_FUNDS
   end
 
   it 'does not allow an account owner to deposit less than 5 coins' do
-    expect { subject.deposit(4.5) }.to raise_error BankAccount::INSUFFICIENT_DEPOSIT
+    expect { subject.deposit(4.5, test_date) }.to raise_error BankAccount::INVALID_DEPOSIT
   end
 
   it 'does not allow an account owner to withdraw less than 5 coins' do
-    expect { subject.deposit(4.5) }.to raise_error BankAccount::INSUFFICIENT_DEPOSIT
+    subject.deposit(500, test_date)
+
+    expect { subject.withdraw(4.5, test_date) }.to raise_error BankAccount::INVALID_WITHDRAWAL
   end
 end

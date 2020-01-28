@@ -7,11 +7,11 @@ Customers of a bank wish to keep track of and access the money they have earned 
 ### Acceptance Criteria
 
 ```
-**Given** a client makes a deposit of 1000 on 10-01-2012  
-**And** a deposit of 2000 on 13-01-2012  
-**And** a withdrawal of 500 on 14-01-2012  
-**When** she prints her bank statement  
-**Then** she would see
+** Given a client makes a deposit of 1000 on 10-01-2012  
+** And a deposit of 2000 on 13-01-2012  
+** And a withdrawal of 500 on 14-01-2012  
+** When she prints her bank statement  
+** Then she would see
 
 date || credit || debit || balance
 14/01/2012 || || 500.00 || 2500.00
@@ -22,10 +22,6 @@ date || credit || debit || balance
 ## User Stories
 
 ```
-As a customer
-So that I have somewhere to put my money
-I would like to sign up for a bank account
-
 As a customer
 So that I can manage my money
 I would like access to my bank account
@@ -39,16 +35,8 @@ So that I can spend my earnings as and when I need to
 I would like to be able to make withdrawals
 
 As a customer
-So that I can keep track of how much money I have
-I would like to view my current balance
-
-As a customer
 So that I can keep track of my spending habits
-I would like to be able to print out my bank balance
-
-As a customer
-So that only I can access my money
-I would like to be able to set a PIN number
+I would like to be able to print out my bank statement
 
 ––––––––––
 
@@ -79,13 +67,12 @@ Nouns often become pieces of state, whereas the verbs often become methods and m
 | `bank statement` | `withdraw` |
 | `credit` | `manage` |
 | `debit` | `access` |
-| `balance` | `keep track of` |
+| `bank account` | `keep track of` |
 | `withdrawal` | `alerted` |
-|  `earnings` | `cannot` |
+| `earnings` | `cannot` |
 | `redundant deposit/withdrawal` | |
 | `minimum` | |
 | `bank` | |
-| `bank account` | |
 
 ## Class Diagrams
 
@@ -94,21 +81,24 @@ Once the nouns and verbs have been split, I wanted to divide the potential metho
 Keeping the classes as lean as possible – giving each a small piece of logic to deal with – allows for much easier maintenance and presents more opportunities for scaling should the owner require.
 
 
-| BankAccount                 | Deposit           | Withdrawal        | Transactions         | Bank                                      | Authentication |
-| :-------------------------- | :---------------- | :---------------- | :-----------------   | :---------------------------------------- | :---- |
-| `@balance`                  | `@amount`         | `@amount`         | `@transactions`      | `@bank_accounts`                          | `@pin_number`  |
-| `@transactions`             | `@date`           | `@date`           |                      | `@account (tracked-account)`              |                |
-| `@authentication`           | `@logged_balance` | `@logged_balance` |                      |                                           |                |
-| `@locked`                   |                   |                   |                      |                                           |                |
-| `#deposit`                  | `#view_amount`    | `#view_amount`    | `#log_data`          | `#self.open_account_for`                  | `#verify`      |
-| `#withdraw`                 | `#date_created`   | `#date_created`   |                      | `#self.account_for`                       |                |
-| `#view_balance`             | `#log_line`       | `#log_line`       |                      |                                           |                |
-| `#print_statement`          |                   |                   |                      |                                           |                |
-| `#enter_pin`                |                   |                   |                      |                                           |                |
-| `::UNAUTHORISED`            | `::CURRENT_DATE`  | `::CURRENT_DATE`  |                      | `::NON_EXISTENT_ACCOUNT`                  |                |
-| `::INSUFFICIENT_FUNDS`      |                   |                   |                      |                                           |                |
-| `::INSUFFICIENT_DEPOSIT`    |                   |                   |                      |                                           |                |
-| `::INSUFFICIENT_WITHDRAWAL` |                   |                   |                      |                                           |                |
+| BankAccount                 | Deposit           | Withdrawal        | Transactions         |
+| :-------------------------- | :---------------- | :---------------- | :-----------------   |
+|                             |                   |                   |                      |
+| `@balance`                  | `@amount`         | `@amount`         | `@transactions`      |
+| `@transactions`             | `@date`           | `@date`           |                      |
+|                             | `@logged_balance` | `@logged_balance` |                      |
+|                             |                   |                   |                      |
+| `#deposit`                  | `#view_amount`    | `#view_amount`    | `#log_data`          |
+| `#withdraw`                 | `#date_created`   | `#date_created`   |                      |
+| `#view_balance`             | `#log_line`       | `#log_line`       |                      |
+| `#print_statement`          |                   |                   |                      |
+|                             |                   |                   |                      |
+| `::UNAUTHORISED`            | `::CURRENT_DATE`  | `::CURRENT_DATE`  |                      |
+| `::INSUFFICIENT_FUNDS`      |                   |                   |                      |
+| `::INVALID_DEPOSIT`         |                   |                   |                      |
+| `::INVALID_WITHDRAWAL`      |                   |                   |                      |
+
+After drawing this class Diagram, I realised both the `Deposit` and `Withdrawal` classes shared several and features.  Initially I made them subclasses of a single `Transaction` class, but eventually reverted back to using a single class as the two were virtually identical.
 
 ## Technologies Used
 
@@ -133,7 +123,7 @@ Travis CI
 
 - Clone this repository
 - `cd` into the directory
-- run `bundle`
+- run `bundle` to install any missing dependencies
 - run `bundle exec rspec` to run the test suite
 - run `bundle exec rubocop` to run the code linter
 
@@ -149,28 +139,21 @@ irb(main):001:0> require_relative './lib/bank.rb'
 
 ### Using the program
 
-To initialise an account you will need to open one; simple call the method `open_account_for` on the `Bank` class:
+To initialise an account you will need to create one:
 ```
-irb(main):002:0> Bank.open_account_for 'Sam', 1255
-```
-Then to keep track of it, you can find and assign it to a variable:
-```
-irb(main):003:0> sams_account = Bank.account_for 'Sam', 1255
+irb(main):000:0> sams_account = BankAccount.new
 ```
 
 You can do the following things with your account:
 ```
 Make a deposit:
-  irb(main):004:0> sams_account.deposit 500
+  irb(main):001:0> sams_account.deposit 500
 
 Make a withdrawal:
-  irb(main):005:0> sams_account.withdraw 30
+  irb(main):002:0> sams_account.withdraw 30
 
 Print your statement:
-  irb(main):006:0> sams_account.print_statement
-
-View your current balance:
-  irb(main):007:0> sams_account.view_balance
+  irb(main):003:0> sams_account.print_statement
 ```
 
 ## Future Improvements
