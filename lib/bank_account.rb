@@ -1,5 +1,6 @@
 require_relative 'deposit'
 require_relative 'withdrawal'
+require_relative 'transaction'
 require_relative 'transactions'
 
 class BankAccount
@@ -25,7 +26,7 @@ class BankAccount
     @locked = locked
   end
 
-  def deposit amount, balance_at_deposit = (@balance + amount), date = nil
+  def deposit amount, balance_at_deposit = (@balance + amount), date = Transaction::CURRENT_DATE
     raise UNAUTHORISED if @locked
     raise INSUFFICIENT_DEPOSIT if amount < 5
 
@@ -34,7 +35,7 @@ class BankAccount
     "You have deposited #{'%.2f' % amount} coins"
   end
 
-  def withdraw amount, balance_at_withdrawal = (@balance - amount), date = nil
+  def withdraw amount, balance_at_withdrawal = (@balance - amount), date = Transaction::CURRENT_DATE
     raise UNAUTHORISED if @locked
     raise INSUFFICIENT_FUNDS if (@balance - amount).negative?
     raise INSUFFICIENT_WITHDRAWAL if amount < 5
