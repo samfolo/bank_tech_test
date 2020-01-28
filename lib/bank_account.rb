@@ -5,8 +5,6 @@ class BankAccount
   INSUFFICIENT_FUNDS = 'This account has inufficient funds.'
   INVALID_DEPOSIT = 'Invalid deposit.'
   INVALID_WITHDRAWAL = 'Invalid withdrawal.'
-
-  attr_reader :owner
   
   def initialize transactions = Transactions.new
     @transactions = transactions
