@@ -126,47 +126,56 @@ capybara
 rubocop 0.71.0
 simplecov
 simplecov-console
+Travis CI
 ```
 
 ## How To Run The Program
 
 - Clone this repository
-- `cd` in the directory
+- `cd` into the directory
 - run `bundle`
 - run `bundle exec rspec` to run the test suite
 - run `bundle exec rubocop` to run the code linter
 
 - open your REPL on the command line by typing `irb` or `pry`
+- require `bank.rb` and `bank_account.rb` to run the program:
+
+```
+irb(main):000:0> require_relative './lib/bank_account.rb'
+=> true
+irb(main):001:0> require_relative './lib/bank.rb'
+=> true
+```
 
 ### Using the program
 
 To initialise an account you will need to open one; simple call the method `open_account_for` on the `Bank` class:
 ```
-irb(main):000:0> Bank.open_account_for 'Sam', 1255
+irb(main):002:0> Bank.open_account_for 'Sam', 1255
 ```
 Then to keep track of it, you can find and assign it to a variable:
 ```
-irb(main):001:0> sams_account = Bank.account_for 'Sam', 1234
+irb(main):003:0> sams_account = Bank.account_for 'Sam', 1234
 ```
 
 You can do the following things with your account:
 ```
 Make a deposit:
-  irb(main):002:0> sams_account.deposit 500
+  irb(main):004:0> sams_account.deposit 500
 
 Make a withdrawal:
-  irb(main):003:0> sams_account.withdraw 30
+  irb(main):005:0> sams_account.withdraw 30
 
 Print your statement:
-  irb(main):004:0> sams_account.print_statement
+  irb(main):006:0> sams_account.print_statement
 
 View your current balance:
-  irb(main):005:0> sams_account.view_balance
+  irb(main):007:0> sams_account.view_balance
 ```
 
 ## Future Improvements
 
-• I would love to be able to afford a user an overdraft, this may work well for account owners with more complicated financial requirements; if the bank aspires to improve the quality of their service, then this could be a valuable addition.<br/><br/>
+• I would love to be able to afford a user an overdraft, this may work well for account owners with more complicated financial requirements; if the bank aspires to improve the quality of their service, then this could be a valuable addition.
 
 • I would also like to have a way to keep track of interest; both on their savings and on any overdraft amounts left outstanding. This will give account owners incentive to pay back their loans in a timely manner, as well as incentive to maintain their accounts by rewarding their loyalty.
 
