@@ -6,8 +6,9 @@ class BankAccount
   INVALID_DEPOSIT = 'Invalid deposit.'
   INVALID_WITHDRAWAL = 'Invalid withdrawal.'
   
-  def initialize transactions = Transactions.new
+  def initialize transaction_class = Transaction, transactions = Transactions.new
     @transactions = transactions
+    @transaction_class = transaction_class
     @balance = 0
   end
 
@@ -16,8 +17,8 @@ class BankAccount
 
     @balance += amount
     at_deposit ||= @balance
-    @transactions.log Transaction.new(amount, at_deposit, date, 'deposit')
-    amount
+    @transactions.log @transaction_class.new(amount, at_deposit, date, 'deposit')
+    @balance
   end
 
   def withdraw amount, date = Transaction::CURRENT_DATE
@@ -26,8 +27,8 @@ class BankAccount
 
     @balance -= amount
     at_withdrawal ||= @balance
-    @transactions.log Transaction.new(amount, at_withdrawal, date, 'withdrawal')
-    -amount
+    @transactions.log @transaction_class.new(amount, at_withdrawal, date, 'withdrawal')
+    @balance
   end
 
   def print_statement
