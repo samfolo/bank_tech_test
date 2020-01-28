@@ -16,9 +16,7 @@ class BankAccount
     authentication = nil, 
     balance = 0, 
     transactions = Transactions.new, 
-    locked = true,
-    deposit_class = Deposit,
-    withdrawal_class = Withdrawal
+    locked = true
     )
 
     @owner = owner
@@ -26,8 +24,6 @@ class BankAccount
     @balance = balance
     @transactions = transactions
     @locked = locked
-    @deposit_class = deposit_class
-    @withdrawal_class = withdrawal_class
   end
 
   def deposit amount, date = Transaction::CURRENT_DATE
