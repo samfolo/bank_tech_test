@@ -92,8 +92,8 @@ Keeping the classes as lean as possible – giving each a small piece of logic t
 |                             |                   |                   |                      |                |
 | `::UNAUTHORISED`            | `::CURRENT_DATE`  | `::CURRENT_DATE`  |                      |                |
 | `::INSUFFICIENT_FUNDS`      |                   |                   |                      |                |
-| `::INSUFFICIENT_DEPOSIT`    |                   |                   |                      |                |
-| `::INSUFFICIENT_WITHDRAWAL` |                   |                   |                      |                |
+| `::INVALID_DEPOSIT`         |                   |                   |                      |                |
+| `::INVALID_WITHDRAWAL`      |                   |                   |                      |                |
 
 After drawing this class Diagram, I realised both the `Deposit` and `Withdrawal` classes shared several and features.  Initially I made them subclasses of a single `Transaction` class, but eventually reverted back to using a single class as the two were virtually identical.
 

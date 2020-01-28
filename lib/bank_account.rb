@@ -3,8 +3,8 @@ require_relative 'transactions'
 
 class BankAccount
   INSUFFICIENT_FUNDS = 'This account has inufficient funds.'
-  INSUFFICIENT_DEPOSIT = 'Insufficient deposit.'
-  INSUFFICIENT_WITHDRAWAL = 'Insufficient withdrawal.'
+  INVALID_DEPOSIT = 'Invalid deposit.'
+  INVALID_WITHDRAWAL = 'Invalid withdrawal.'
 
   attr_reader :owner
   
@@ -14,7 +14,7 @@ class BankAccount
   end
 
   def deposit amount, date = Transaction::CURRENT_DATE
-    raise INSUFFICIENT_DEPOSIT if amount < 5
+    raise INVALID_DEPOSIT if amount < 5
 
     @balance += amount
     at_deposit ||= @balance
@@ -24,7 +24,7 @@ class BankAccount
 
   def withdraw amount, date = Transaction::CURRENT_DATE
     raise INSUFFICIENT_FUNDS if (@balance - amount).negative?
-    raise INSUFFICIENT_WITHDRAWAL if amount < 5
+    raise INVALID_WITHDRAWAL if amount < 5
 
     @balance -= amount
     at_withdrawal ||= @balance

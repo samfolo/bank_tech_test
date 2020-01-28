@@ -30,10 +30,12 @@ RSpec.describe BankAccount do
   end
 
   it 'does not allow an account owner to deposit less than 5 coins' do
-    expect { subject.deposit(4.5) }.to raise_error BankAccount::INSUFFICIENT_DEPOSIT
+    expect { subject.deposit(4.5) }.to raise_error BankAccount::INVALID_DEPOSIT
   end
 
   it 'does not allow an account owner to withdraw less than 5 coins' do
-    expect { subject.deposit(4.5) }.to raise_error BankAccount::INSUFFICIENT_DEPOSIT
+    subject.deposit(500)
+
+    expect { subject.withdraw(4.5) }.to raise_error BankAccount::INVALID_WITHDRAWAL
   end
 end
