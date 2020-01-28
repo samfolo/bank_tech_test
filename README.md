@@ -155,7 +155,7 @@ irb(main):002:0> Bank.open_account_for 'Sam', 1255
 ```
 Then to keep track of it, you can find and assign it to a variable:
 ```
-irb(main):003:0> sams_account = Bank.account_for 'Sam', 1234
+irb(main):003:0> sams_account = Bank.account_for 'Sam', 1255
 ```
 
 You can do the following things with your account:
