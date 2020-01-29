@@ -10,6 +10,13 @@ RSpec.describe 'a working bank account', type: :feature do
     expect(test_account.withdraw(250)).to eq 250
   end
 
+  scenario 'an account owner prints a statement before making any transactions' do
+    expected_statement = "date || credit || debit || balance\n"
+
+    expect(STDOUT).to receive(:puts).with expected_statement
+    test_account.print_statement
+  end
+
   scenario 'an account owner makes a deposit of 40 on 10/01/2020 and prints their statement' do
     test_account.deposit(40, '10/01/2020')
     expected_statement = "date || credit || debit || balance\n10/01/2020 || 40.00 || || 40.00"

@@ -80,7 +80,6 @@ Once the nouns and verbs have been split, I wanted to divide the potential metho
 
 Keeping the classes as lean as possible – giving each a small piece of logic to deal with – allows for much easier maintenance and presents more opportunities for scaling should the owner require.
 
-
 | BankAccount                 | Deposit           | Withdrawal        | Transactions         |
 | :-------------------------- | :---------------- | :---------------- | :-----------------   |
 |                             |                   |                   |                      |
